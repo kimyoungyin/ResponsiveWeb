@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  /* 전체에서 약간의 띔현상이 있다면 */
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  /* 밑줄제거 */
+  color: white;
+  /* 이것도 내용 가장 직전이니까 가능? */
+}
+
+.navbar {
+  display: flex;
+  /* 블록으로 되있는것 가로로 정렬 */
+  justify-content: space-between;
+  /* 같은 블록 안에 일정 공간 필요시/ flext-direction으로 기본축 결정 후 이에 대해 균등배분을 결정하는 속성*/
+  align-items: center;
+  /* 기준 정렬의 수직방향에 대한 정렬을 정할 때 쓴다! */
+  background: #263343;
+  padding: 8px 12px;
+}
+
+.navbar_logo {
+  font-size: 24px;
+  color: white;
+}
+
+.navbar_logo i {
+  color: #d49466;
+}
+
+.navbar_menu {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  /* 중간에 없고 약간 오른쪽에 있어서 확인해보니 약간의 패딩이 있었다 */
+}
+
+.navbar_menu li {
+  padding: 8px;
+  /* 리스트 내용간의 띔은 직접 하자 */
+}
+
+.navbar_menu li:hover {
+  background: #d49466;
+  border-radius: 4px;
+}
+
+.navbar_icons {
+  list-style: none;
+  color: white;
+  display: flex;
+}
+
+.navbar_icons li {
+  padding: 8px 12px;
+}
+
+.navbar_togglebtn {
+  display: none;
+  /* 화면이 작아졌을 때만 보여주고 싶음. 그냥 상태로는 없음으로 */
+  position: absolute;
+  /* 다른 정렬들과는 상관없이 고정하고 싶을 때 */
+  right: 32px;
+  font-size: 24px;
+  color: #d49466;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    /* 정렬 반대방향의 반대정렬 기준 어디에 위치할건지 */
+    padding: 8px 24px;
+  }
+
+  .navbar_menu {
+    display: none;
+    /* 평소 말고 토글 눌렀을 때만 나오게 하고 싶음 */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* 가운데 정렬은 align으로 해결됬으나 너비가 작아서 nav바 왼쪽에 쏠려있으므로 확장 */
+  }
+
+  .navbar_menu li {
+    width: 100%;
+    /* 주의!! 텍스트 너비가 넓어졌을 때 텍스트는 왼쪽으로 붙는다->textalign으로 해결해야  */
+    text-align: center;
+  }
+
+  .navbar_icons {
+    display: none;
+    /* 평소 말고 토글 눌렀을 때만 나오게 하고 싶음 */
+    justify-content: center;
+    /* 이 자식인 li 축방향은 그대로 row로 설정되어있음. 그러므로 자식을 중간으로 움직이게 하려면 이게 맞음 */
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .navbar_togglebtn {
+    display: block;
+    /* 인라인 아니면 블록? */
+  }
+
+  .navbar_menu.active,
+  .navbar_icons.active {
+    display: flex;
+  }
+}
